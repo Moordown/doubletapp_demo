@@ -7,5 +7,6 @@ RUN apt-get update && apt-get install -y \
     libpq-dev
 ADD requirements.txt /app/
 RUN pip3 install -r /app/requirements.txt
+RUN ln -sf /bin/python3.8 python
 ADD . /app
 WORKDIR /app
