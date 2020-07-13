@@ -53,7 +53,7 @@ def themes_list_by_level_and_category(request):
 def words_list_by_id(request, pk):
     try:
         object = Word.objects.get(pk=pk)
-    except Theme.DoesNotExist:
+    except Word.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     serializer = WordSerializer(object)
