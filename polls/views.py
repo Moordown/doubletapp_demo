@@ -50,7 +50,11 @@ def themes_list_by_level_and_category(request):
 
 @api_view(['GET'])
 @check_secret
-def words_list(request):
-    objects = Word.objects.all().filter()
-    serializer = WordSerializer(objects, many=True)
+def words_list_by_id(request, pk):
+    try:
+        object = Word.objects.get(pk=pk)
+    except Theme.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = WordSerializer(object)
     return JsonResponse(serializer.data, safe=False)
